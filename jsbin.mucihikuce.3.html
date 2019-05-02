@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2019 by anonymous (http://jsbin.com/mucihikuce/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2019 by anonymous (http://jsbin.com/yemuwopubo/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <style id="jsbin-css">
+.calculator{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.item{
+  display: flex;
+  align-items: center;
+  background-color: #424345;
+  width: 20vw;
+  height: 15vh;
+  border: 1px solid white;
+
+  color:white;
+  border-radius: 100px;
+  justify-content:center;
+  margin: 5px;
+
+}
+
+#screen{
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 10vh;
+  font-size: 30px;
+  padding: 20px;
+  color: white;
+}
+
+#ce,#positive-negative,#percent{
+ background-color: #D4D4D2;
+}
+
+#delete,#devide,#multiply,#add,#substract{
+  background-color: #f98110;
+}
+</style>
+</head>
+  <body>
+<div class="calculator" id="app">
+  <input id="screen" v-model="input"></input>
+    <input id="screen" v-model="result"></input>
+  <div class="item" id="ce" v-on:click="clearScreen()">CE</div>
+  <div class="item" id="positive-negative" v-on:click="negation(1)">+/-</div>
+  <div class="item" id="percent" v-on:click="getParams()">%</div>
+  <div class="item" id="delete" v-on:click="delParams()">Delete</div>
+  <div class="item"  v-on:click="getParams(7)">7</div>
+  <div class="item"  v-on:click="getParams(8)">8</div>
+  <div class="item"  v-on:click="getParams(9)">9</div>
+  <div class="item" id="devide" v-on:click="devide()">/</div>
+  <div class="item"  v-on:click="getParams(4)">4</div>
+  <div class="item"  v-on:click="getParams(5)">5</div>
+  <div class="item"  v-on:click="getParams(6)">6</div>
+  <div class="item" id="multiply" v-on:click="multiply()">*</div>
+  <div class="item"  v-on:click="getParams(1)">1</div>
+  <div class="item"  v-on:click="getParams(2)">2</div>
+  <div class="item"  v-on:click="getParams(3)">3</div>
+  <div class="item" id="substract" v-on:click="substract()">-</div>
+  <div class="item"  v-on:click="getParams(0)">0</div>
+  <div class="item" id="dot" v-on:click="addDot()">.</div>
+  <div class="item" id="equal" v-on:click="calculate()">=</div>
+  <div class="item" id="add" v-on:click="add()">+</div>
+</div>
+
+  <script id="jsbin-javascript">
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    result: '',
+    input: ''
+  },
+  methods: {
+    getParams : function (num){
+    //  alert(num);
+      this.input += num;
+    },
+    getOperator: function(op){
+
+    },
+    delParams: function(){
+      this.input = this.input.substr(0,this.input.length-1);
+    },
+    clearScreen: function(){
+      this.input = '';
+    },
+    addDot: function(){
+      this.input += '.';
+    },
+    negation: function(){
+      this.input = (String)(-1* this.input);
+    },
+    add: function(){
+      this.input = this.input+'+';
+    },
+    substract: function(){
+      this.input = this.input+'-';
+    },
+    multiply: function(){
+      this.input = this.input+'*';
+    },
+    devide: function(){
+      this.input = this.input+'/';
+    },
+    getPercent: function(){
+      this.result = parseInt(this.input) / 100;
+    },
+    calculate: function(){
+      var num_arr = this.input.split("");
+      for(var index in num_arr){
+        if(num_arr[index] == '+' || num_arr[index] == '-' || num_arr[index] == '*' || num_arr[index] == '/'  ){
+            var param1 = this.input.substr(0,index);
+            var operator = num_arr[index];
+            var param2 = this.input.substr(parseInt(index)+1, this.input.length);
+
+            if(num_arr[index] == '+'){
+              this.result = parseInt(param1) + parseInt(param2);
+            }if(num_arr[index] == '-'){
+              this.result = parseInt(param1) - parseInt(param2);
+            }if(num_arr[index] == '*'){
+              this.result = parseInt(param1) * parseInt(param2);
+            }if(num_arr[index] == '/'){
+              this.result = parseInt(param1) / parseInt(param2);
+            }
+      }
+     }//for loop finished here
+       this.input =this.result;
+
+    }
+  }
+})
+
+
+</script>
+</body>
+</html>
