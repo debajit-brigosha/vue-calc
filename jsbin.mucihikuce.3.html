@@ -28,6 +28,10 @@ Released under the MIT license: http://jsbin.mit-license.org
   justify-content: center;
   flex-wrap: wrap;
   background-color: black;
+  width: 100vw;
+}
+body{
+  padding: 0;
 }
 
 .item{
@@ -35,7 +39,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   align-items: center;
   background-color: #424345;
   width: 20vw;
-  height: 15vh;
+  height: 12vh;
   border: 1px solid white;
 
   color:white;
@@ -71,7 +75,7 @@ Released under the MIT license: http://jsbin.mit-license.org
     <input id="screen" v-model="result"></input>
   <div class="item" id="ce" v-on:click="clearScreen()">CE</div>
   <div class="item" id="positive-negative" v-on:click="negation(1)">+/-</div>
-  <div class="item" id="percent" v-on:click="getParams()">%</div>
+  <div class="item" id="percent" v-on:click="getPercent()">%</div>
   <div class="item" id="delete" v-on:click="delParams()">Delete</div>
   <div class="item"  v-on:click="getParams(7)">7</div>
   <div class="item"  v-on:click="getParams(8)">8</div>
@@ -132,7 +136,9 @@ var app = new Vue({
       this.input = this.input+'/';
     },
     getPercent: function(){
-      this.result = parseInt(this.input) / 100;
+      this.result = parseInt(this.input.toString()) / 100;
+  //  alert(typeof this.result);
+  //  alert(typeof this.input);
     },
     calculate: function(){
       var num_arr = this.input.split("");
