@@ -41,12 +41,10 @@ body{
   width: 20vw;
   height: 12vh;
   border: 1px solid white;
-
   color:white;
   border-radius: 100px;
   justify-content:center;
   margin: 5px;
-
 }
 
 #screen{
@@ -72,7 +70,7 @@ body{
   <body>
 <div class="calculator" id="app">
   <input id="screen" v-model="input"></input>
-    <input id="screen" v-model="result"></input>
+  <input id="screen" v-model="result"></input>
   <div class="item" id="ce" v-on:click="clearScreen()">CE</div>
   <div class="item" id="positive-negative" v-on:click="negation(1)">+/-</div>
   <div class="item" id="percent" v-on:click="getPercent()">%</div>
@@ -96,7 +94,6 @@ body{
 </div>
 
   <script id="jsbin-javascript">
-
 var app = new Vue({
   el: '#app',
   data: {
